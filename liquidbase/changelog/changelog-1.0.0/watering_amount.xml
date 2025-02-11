@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+  xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+                      http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+                      http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd">
+
+  <changeSet id="1" author="Phil">
+    <createTable tableName="watering_amount" schemaName="watering">
+      <column name="watering_amount_id" type="int" autoIncrement="true">
+        <constraints primaryKey="true" nullable="false" />
+      </column>
+      <column name="watering_date_id" type="int">
+        <constraints
+          nullable="false"
+          foreignKeyName="fk_watering_amount_watering_date"
+          references="watering.watering_date(watering_date_id)"
+        />
+      </column>
+      <column name="watering_zone_id" type="int">
+        <constraints
+          nullable="false"
+          foreignKeyName="fk_watering_amount_watering_zone"
+          references="watering.watering_zone(watering_zone_id)"
+        />
+      </column>
+      <column name="watering_amount" type="int">
+        <constraints nullable="false" />
+      </column>
+    </createTable>
+  </changeSet>
+  <changeSet id="2" author="Phil">
+    <createIndex
+      tableName="watering_amount"
+      indexName="idx_watering_amount_watering_zone_id_fkey"
+      schemaName="watering">
+      <column name="watering_zone_id" />
+    </createIndex>
+  </changeSet>
+
+</databaseChangeLog>
