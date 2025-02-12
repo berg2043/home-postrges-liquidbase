@@ -8,11 +8,15 @@
                       http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
                       http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd">
 
-  <include file="changelog/changelog-1.0.0/dml.xml" />
-  <include file="changelog/changelog-1.0.0/watering_schema.xml" />
-  <include file="changelog/changelog-1.0.0/watering_zone.xml" />
-  <include file="changelog/changelog-1.0.0/watering_date.xml" />
-  <include file="changelog/changelog-1.0.0/watering_amount.xml" />
-  <include file="changelog/changelog-1.0.0/watering_total.xml" />
+  <changeSet id="1" author="Phil">
+    <createView
+      encoding="UTF-8"
+      fullDefinition="false"
+      path="changelog/changelog-1.0.0/watering_total.sql"
+      replaceIfExists="true"
+      schemaName="watering"
+      viewName="watering_total" />
+
+  </changeSet>
 
 </databaseChangeLog>
