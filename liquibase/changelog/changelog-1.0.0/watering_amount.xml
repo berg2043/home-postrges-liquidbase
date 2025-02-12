@@ -27,7 +27,7 @@
           references="watering.watering_zone(watering_zone_id)"
         />
       </column>
-      <column name="watering_amount" type="int">
+      <column name="watering_amount" type="decimal(5,3)">
         <constraints nullable="false" />
       </column>
     </createTable>

@@ -38,14 +38,14 @@ services:
   #   networks:
   #     - proxy
   #     - database
-  liquidbase-update:
-    container_name: liquidbase-update
+  liquibase-update:
+    container_name: liquibase-update
     image: liquibase
     depends_on:
       postgres: 
         condition: service_healthy
     volumes:
-      - ./liquidbase/changelog:/liquibase/changelog
+      - ./liquibase/changelog:/liquibase/changelog
     command: update --driver=org.postgresql.Driver
             --url="jdbc:postgresql://postgres:5432/dev"
             --changeLogFile=changelog/root_changelog.xml --username=server_ddl
