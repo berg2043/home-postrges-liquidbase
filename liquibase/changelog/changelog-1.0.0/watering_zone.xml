@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+  xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+                      http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+                      http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd">
+
+  <changeSet id="1" author="Phil">
+    <createTable tableName="watering_zone" schemaName="watering">
+      <column name="watering_zone_id" type="int" autoIncrement="true">
+        <constraints primaryKey="true" nullable="false" />
+      </column>
+      <column name="zone_name" type="varchar">
+        <constraints nullable="false" />
+      </column>
+    </createTable>
+  </changeSet>
+  <changeSet id="2" author="Phil">
+    <insert tableName="watering_zone" schemaName="watering">
+      <column name="zone_name" value="front" />
+    </insert>
+    <insert tableName="watering_zone" schemaName="watering">
+      <column name="zone_name" value="back" />
+    </insert>
+    <insert tableName="watering_zone" schemaName="watering">
+      <column name="zone_name" value="side" />
+    </insert>
+    <rollback>
+      <delete tableName="watering_zone" schemaName="watering">
+        <where>zone_name in ('front','back','side')</where>
+      </delete>
+    </rollback>
+  </changeSet>
+
+</databaseChangeLog>

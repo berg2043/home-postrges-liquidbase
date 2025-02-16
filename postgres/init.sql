@@ -1,0 +1,16 @@
+CREATE DATABASE prod;
+
+CREATE ROLE server_ddl WITH LOGIN PASSWORD 'testing' CREATEROLE;
+
+GRANT CREATE ON DATABASE dev TO server_ddl;
+GRANT CREATE ON DATABASE prod TO server_ddl;
+
+\connect dev;
+CREATE SCHEMA liquibase;
+GRANT ALL PRIVILEGES ON SCHEMA liquibase TO server_ddl;
+CREATE EXTENSION IF NOT EXISTS tablefunc;
+
+\connect prod;
+CREATE SCHEMA liquibase;
+GRANT ALL PRIVILEGES ON SCHEMA liquibase TO server_ddl;
+CREATE EXTENSION IF NOT EXISTS tablefunc;
