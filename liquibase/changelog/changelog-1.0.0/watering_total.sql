@@ -1,4 +1,9 @@
-SELECT *
+SELECT
+  watering_date_id
+  ,watering_date
+  ,COALESCE(front, 0) AS front
+  ,COALESCE(back, 0) AS back
+  ,COALESCE(side, 0) AS side
 FROM crosstab(
   $$
   SELECT
